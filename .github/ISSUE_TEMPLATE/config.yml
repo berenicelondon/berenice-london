@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🌐 Live Website
+    url: https://berenicelondon.co.uk
+    about: Visit our live website to see the platform in action
+  - name: 📧 Direct Support
+    url: mailto:support@berenicelondon.co.uk
+    about: Contact our support team directly for urgent issues
+  - name: 💬 Community Discussions
+    url: https://github.com/berenicelondon/berenice-london/discussions
+    about: Join our community discussions for general questions and feature ideas
+  - name: 📖 Documentation
+    url: https://github.com/berenicelondon/berenice-london/wiki
+    about: Check our comprehensive documentation and guides
+  - name: 🐛 Security Issues
+    url: mailto:security@berenicelondon.co.uk
+    about: Report security vulnerabilities privately (please do not create public issues for security concerns)
