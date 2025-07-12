@@ -2,21 +2,25 @@
   remote_images = ["https://source.unsplash.com/.*", "https://images.unsplash.com/.*", "https://ext.same-assets.com/.*", "https://ugc.same-assets.com/.*"]
 
 [build]
-  command = "bun run build"
+  command = "npm run build"
   publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
-  NPM_FLAGS = "--force"
+  NPM_VERSION = "10"
+  # Enable legacy peer deps to handle dependency conflicts
+  NPM_FLAGS = "--legacy-peer-deps"
+  # Ensure Stripe environment variables are available during build
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = ""
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
 [dev]
-  command = "bun run dev"
+  command = "npm run dev"
   port = 3000
 
-# Redirect all API routes and dynamic pages
+# Handle API routes and dynamic pages
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/___netlify-handler"
