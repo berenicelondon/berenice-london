@@ -5,6 +5,10 @@ const nextConfig = {
     // These are mostly related to Stripe API types and don't affect functionality
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    // Enable TypeScript checking during build for production
+    ignoreBuildErrors: false,
+  },
   images: {
     domains: [
       "source.unsplash.com",
@@ -34,6 +38,33 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+  },
+  // Environment variables available to the browser
+  env: {
+    // Only expose public environment variables
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || 'https://berenicelondon.co.uk',
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '',
+  },
+  // Output configuration for Netlify
+  output: 'standalone',
+  // Experimental features for better performance
+  experimental: {
+    // Enable PPR for better performance (if needed)
+    ppr: false,
+  },
+  // API routes configuration
+  async headers() {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+        ],
+      },
+    ];
   },
 };
 
