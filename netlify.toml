@@ -1,0 +1,79 @@
+[images]
+  remote_images = ["https://source.unsplash.com/.*", "https://images.unsplash.com/.*", "https://ext.same-assets.com/.*", "https://ugc.same-assets.com/.*"]
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_VERSION = "10"
+  NODE_ENV = "production"
+  # Enable legacy peer deps to handle dependency conflicts
+  NPM_FLAGS = "--legacy-peer-deps"
+  # Required environment variables for build
+  NEXT_PUBLIC_APP_URL = "https://berenicelondon.co.uk"
+  # Stripe environment variables (will be overridden by actual values in Netlify dashboard)
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = ""
+  STRIPE_SECRET_KEY = ""
+  # Build optimization
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[dev]
+  command = "npm run dev"
+  port = 3000
+
+# Handle API routes and dynamic pages
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/___netlify-handler"
+  status = 200
+
+[[redirects]]
+  from = "/shop/product/*"
+  to = "/.netlify/functions/___netlify-handler"
+  status = 200
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/.netlify/functions/___netlify-handler"
+  status = 200
+
+# Fallback for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+[functions]
+  directory = ".netlify/functions"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# API routes headers
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Static assets caching
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
