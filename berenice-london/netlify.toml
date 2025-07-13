@@ -1,18 +1,19 @@
-[images]
-  remote_images = ["https://source.unsplash.com/.*", "https://images.unsplash.com/.*", "https://ext.same-assets.com/.*", "https://ugc.same-assets.com/.*"]
-
 [build]
   command = "npm run build"
-  publish = ".next"
+  # For Next.js with server features, don't specify publish directory
+  # Let the Next.js plugin handle it
 
 [build.environment]
   NODE_VERSION = "20"
   NPM_VERSION = "10"
   # Enable legacy peer deps to handle dependency conflicts
   NPM_FLAGS = "--legacy-peer-deps"
-  # Ensure Stripe environment variables are available during build
-  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = ""
+  # Disable telemetry for faster builds
+  NEXT_TELEMETRY_DISABLED = "1"
+  # Set production environment
+  NODE_ENV = "production"
 
+# Use Netlify's Next.js plugin for full SSR support
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
@@ -20,30 +21,14 @@
   command = "npm run dev"
   port = 3000
 
-# Handle API routes and dynamic pages
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/___netlify-handler"
-  status = 200
-
-[[redirects]]
-  from = "/shop/product/*"
-  to = "/.netlify/functions/___netlify-handler"
-  status = 200
-
-[[redirects]]
-  from = "/blog/*"
-  to = "/.netlify/functions/___netlify-handler"
-  status = 200
-
-# Fallback for SPA routing
-[[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
-
-[functions]
-  directory = ".netlify/functions"
+# Handle image optimization
+[images]
+  remote_images = [
+    "https://source.unsplash.com/.*",
+    "https://images.unsplash.com/.*",
+    "https://ext.same-assets.com/.*",
+    "https://ugc.same-assets.com/.*"
+  ]
 
 # Security headers
 [[headers]]

@@ -45,8 +45,7 @@ const nextConfig = {
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || 'https://berenicelondon.co.uk',
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '',
   },
-  // Output configuration for Netlify
-  output: 'standalone',
+  // Remove output config to let Netlify handle it
   // Experimental features for better performance
   experimental: {
     // Enable PPR for better performance (if needed)
@@ -66,6 +65,10 @@ const nextConfig = {
       },
     ];
   },
+  // Optimize for deployment
+  poweredByHeader: false,
+  generateEtags: false,
+  compress: true,
 };
 
 module.exports = nextConfig;
