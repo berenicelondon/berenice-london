@@ -201,7 +201,7 @@ export function BasicSEO({
       description={description}
       path={path}
       noIndex={noIndex}
-      preloadImages={['/images/hero-background.jpg']}
+      preloadImages={[]}
     />
   )
 }
@@ -300,6 +300,20 @@ export function BlogSEO({
       type="article"
       keywords={[...post.tags, post.category]}
       structuredData={articleSchema}
+    />
+  )
+}
+
+// Home page SEO
+export function HomeSEO() {
+  return (
+    <SEOHead
+      title="Premium Hair Solutions & Bespoke Wigs"
+      description="Expert craftsmanship in bespoke wigs, hairpieces, and professional hair education. Transforming lives through exceptional hair solutions with over 20 years of expertise."
+      keywords={['bespoke wigs', 'hair toppers', 'hair loss solutions', 'professional hair education', 'luxury hairpieces', 'London hair specialist']}
+      canonical="/"
+      type="website"
+      preloadImages={[]} // Removed hero-background.jpg - image doesn't exist
     />
   )
 }

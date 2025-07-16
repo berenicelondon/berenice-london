@@ -93,10 +93,10 @@ export default function RootLayout({
         <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
         {/* Favicon and Icons */}
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
         {/* Theme and Brand Colors */}
@@ -118,7 +118,7 @@ export default function RootLayout({
         <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
 
         {/* Performance Hints */}
-        <link rel="preload" href="/images/hero-background.jpg" as="image" type="image/jpeg" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
 
         {/* Structured Data */}
         <script
