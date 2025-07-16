@@ -1,0 +1,10 @@
+/*    /index.html   200
+/shop/*    /shop/index.html   200
+/gallery/*    /gallery/index.html   200
+/booking/*    /booking/index.html   200
+/blog/*    /blog/index.html   200
+/admin/*    /admin/index.html   200
+/member-dashboard/*    /member-dashboard/index.html   200
+/virtual-tryon/*    /virtual-tryon/index.html   200
+/api/*    /.netlify/functions/:splat   200
+/*    /index.html   200
