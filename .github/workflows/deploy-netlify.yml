@@ -23,8 +23,11 @@ jobs:
         uses: nwtgck/actions-netlify@v2
         with:
           publish-dir: './.next'
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          production-deploy: true
+          enable-github-deployment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         env:
           NEXT_PUBLIC_APP_URL: "https://graceful-crisp-e96a53.netlify.app"
