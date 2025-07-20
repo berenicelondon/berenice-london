@@ -1,11 +1,11 @@
 declare global {
   interface Window {
-    dataLayer: Record<string, any>[];
-    gtag: (...args: (string | Date | Record<string, any>)[]) => void;
-    fbq: (...args: (string | Record<string, any>)[]) => void;
+    dataLayer: Record<string, unknown>[];
+    gtag: (...args: (string | Date | Record<string, unknown>)[]) => void;
+    fbq: (...args: (string | Record<string, unknown>)[]) => void;
     hj: (...args: (string | number)[]) => void;
     _hjSettings: { hjid: number; hjsv: number };
-    _fbq: Record<string, any>;
+    _fbq: Record<string, unknown>;
   }
 }
 
@@ -165,7 +165,16 @@ export const initFacebookPixel = () => {
       if (s && s.parentNode) {
         s.parentNode.insertBefore(t, s);
       }
-      f.fbq = n;
+
+      if (!window.fbq) {
+        window.fbq = function(...args) {
+            if (window.fbq.queue) {
+                window.fbq.queue.push(args);
+            }
+        };
+        window.fbq.queue = [];
+    }
+
     })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
     if (window.fbq) {
@@ -176,7 +185,7 @@ export const initFacebookPixel = () => {
 };
 
 // Track Facebook Pixel events
-export const trackFBEvent = (event: string, data?: Record<string, any>) => {
+export const trackFBEvent = (event: string, data?: Record<string, unknown>) => {
   if (typeof window !== 'undefined' && window.fbq && FB_PIXEL_ID) {
     if (data) {
       window.fbq('track', event, data);
@@ -203,4 +212,18 @@ export const initHotjar = () => {
       }
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
   }
+};
+
+export const verifyEnvironmentVariables = () => {
+    if (typeof window !== 'undefined') {
+        if (!GA_TRACKING_ID) {
+            console.warn('Google Analytics tracking ID is not set. Analytics will be disabled.');
+        }
+        if (!FB_PIXEL_ID) {
+            console.warn('Facebook Pixel ID is not set. Facebook Pixel tracking will be disabled.');
+        }
+        if (!HOTJAR_ID) {
+            console.warn('Hotjar ID is not set. Hotjar tracking will be disabled.');
+        }
+    }
 };
