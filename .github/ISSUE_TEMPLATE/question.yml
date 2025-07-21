@@ -1,0 +1,147 @@
+name: ❓ Question/Support
+description: Ask a question or get support for the Berenice London platform
+title: "❓ [Question]: "
+labels: ["question", "support"]
+assignees:
+  - berenicelondon
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reaching out! Please provide as much detail as possible so we can help you effectively.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please verify the following before submitting
+      options:
+        - label: I have searched existing issues and discussions for my question
+          required: true
+        - label: I have checked the documentation and README
+          required: true
+        - label: This is a question and not a bug report or feature request
+          required: true
+
+  - type: dropdown
+    id: question-type
+    attributes:
+      label: Question Type
+      description: What type of question is this?
+      options:
+        - General Usage
+        - Technical Support
+        - Account/Authentication
+        - Payment/Billing
+        - Virtual Try-On
+        - Mobile App
+        - API/Integration
+        - Performance
+        - Security
+        - Development/Setup
+        - Business/Partnership
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency Level
+      description: How urgent is this question?
+      options:
+        - High (Blocking business operations)
+        - Medium (Affecting user experience)
+        - Low (General inquiry)
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Please describe your question in detail
+      placeholder: What would you like to know?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context/Background
+      description: Provide any relevant context or background information
+      placeholder: Any additional context that might help us understand your question...
+
+  - type: textarea
+    id: attempted-solutions
+    attributes:
+      label: What Have You Tried?
+      description: Have you attempted to solve this yourself? What did you try?
+      placeholder: Describe any solutions you've attempted...
+
+  - type: dropdown
+    id: user-type
+    attributes:
+      label: User Type
+      description: What type of user are you?
+      options:
+        - Customer
+        - Developer
+        - Business Partner
+        - Potential Customer
+        - Researcher/Student
+        - Media/Press
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment Details
+      description: If technical, please provide environment details (browser, device, etc.)
+      placeholder: e.g., Chrome on Windows 11, iPhone 14 with Safari
+
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: Expected Outcome
+      description: What outcome are you hoping for?
+      placeholder: What would a successful resolution look like to you?
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots/Examples
+      description: If applicable, add screenshots or examples to help explain your question
+      placeholder: Drag and drop images here or paste URLs
+
+  - type: dropdown
+    id: contact-preference
+    attributes:
+      label: Preferred Response Method
+      description: How would you prefer to receive a response?
+      options:
+        - GitHub Issue Response
+        - Email Follow-up
+        - No Preference
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Any other information that might be helpful
+      placeholder: Add any other relevant information...
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy Notice
+      description: Please confirm you understand our privacy policy
+      options:
+        - label: I understand that my question and any responses may be visible to other users
+          required: true
+        - label: I have not included any sensitive personal or business information
+          required: true
