@@ -1,0 +1,101 @@
+version: 2
+updates:
+  # Enable version updates for npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "berenicelondon"
+    assignees:
+      - "berenicelondon"
+    commit-message:
+      prefix: "🔄"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "automated"
+    # Group minor and patch updates
+    groups:
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+      # Separate group for React ecosystem
+      react:
+        patterns:
+          - "react*"
+          - "@types/react*"
+        update-types:
+          - "minor"
+          - "patch"
+      # Separate group for Next.js
+      nextjs:
+        patterns:
+          - "next"
+          - "@next/*"
+        update-types:
+          - "minor"
+          - "patch"
+      # Separate group for Stripe
+      stripe:
+        patterns:
+          - "stripe"
+          - "@stripe/*"
+        update-types:
+          - "minor"
+          - "patch"
+      # Separate group for development dependencies
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "berenicelondon"
+    assignees:
+      - "berenicelondon"
+    commit-message:
+      prefix: "🔄 GitHub Actions"
+      include: "scope"
+    labels:
+      - "github-actions"
+      - "dependencies"
+      - "automated"
+
+  # Enable version updates for Docker
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 2
+    reviewers:
+      - "berenicelondon"
+    assignees:
+      - "berenicelondon"
+    commit-message:
+      prefix: "🔄 Docker"
+      include: "scope"
+    labels:
+      - "docker"
+      - "dependencies"
+      - "automated"
